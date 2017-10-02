@@ -45,3 +45,10 @@ LyngkTestCase.prototype.testCloneCoordinates = function()
     var coord2 = coord1.clone();
     assertTrue(coord1.toString() === coord2.toString());
 }
+
+//Hash -> column ascii value + line number
+LyngkTestCase.prototype.testHashCode = function()
+{
+    var tempCoord = new Lyngk.Coordinates("A",3);
+    assertTrue(tempCoord.hash() == (97 + 3));
+}
