@@ -42,6 +42,6 @@ LyngkTestCase.prototype.testInvalidRepresention = function()
 LyngkTestCase.prototype.testCloneCoordinates = function()
 {
     var coord1 = new Lyngk.Coordinates("A",3);
-    var coord2 = Coord1.clone();
+    var coord2 = coord1.clone();
     assertTrue(coord1.toString() === coord2.toString());
 }
