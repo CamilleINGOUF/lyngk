@@ -2,8 +2,9 @@
 
 var LyngkTestCase = TestCase("LyngkTestCase");
 
-LyngkTestCase.prototype.testA = function()
+//Rechercher une coordonnée qui n'existe pas -> A1
+LyngkTestCase.prototype.testB = function()
 {
     var coord = new Lyngk.Coordinates('A',1);
-    assertTrue(coord.isValid());
+    assertFalse(coord.isValid());
 };
