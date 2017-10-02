@@ -18,4 +18,9 @@ Lyngk.Coordinates = function (c, l)
             ,'I7'];
         return goodCoordinates.indexOf(private_column+private_line) >= 0;
     };
+
+    this.toString = function()
+    {
+        return private_column+private_line;
+    };
 };
