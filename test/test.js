@@ -38,3 +38,10 @@ LyngkTestCase.prototype.testInvalidRepresention = function()
     var tempCoord = new Lyngk.Coordinates('A',1);
     assertTrue(tempCoord.toString() === "invalid");
 }
+
+LyngkTestCase.prototype.testCloneCoordinates = function()
+{
+    var coord1 = new Lyngk.Coordinates("A",3);
+    var coord2 = Coord1.clone();
+    assertTrue(coord1.toString() === coord2.toString());
+}
