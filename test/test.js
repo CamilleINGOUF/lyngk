@@ -50,5 +50,5 @@ LyngkTestCase.prototype.testCloneCoordinates = function()
 LyngkTestCase.prototype.testHashCode = function()
 {
     var tempCoord = new Lyngk.Coordinates("A",3);
-    assertTrue(tempCoord.hash() == (97 + 3));
+    assertTrue(tempCoord.hash() == (65 + 3));
 }
