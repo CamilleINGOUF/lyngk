@@ -12,5 +12,16 @@ LyngkTestCase.prototype.testA = function()
 LyngkTestCase.prototype.testB = function()
 {
     var count = 0;
-    assertTrue(count == 43);
+    var alpha = "ABCDEFGHI"
+
+    for(var i = 0; i < alpha.length; i++)
+    {
+        for(var j = 1; j < 10; j++)
+        {
+            var tempCoord = new Lyngk.Coordinates(alpha[i],j)
+            if(tempCoord.isValid())
+                count++;
+        }
+    }
+    assertTrue(count === 43);
 };
