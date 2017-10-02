@@ -32,3 +32,9 @@ LyngkTestCase.prototype.testGoodRepresentation = function()
     var tempCoord = new Lyngk.Coordinates('A',3);
     assertTrue(tempCoord.toString() === "A3");
 }
+
+LyngkTestCase.prototype.testInvalidRepresention = function()
+{
+    var tempCoord = new Lyngk.Coordinates('A',1);
+    assertTrue(tempCoord.toString() === "invalid");
+}
