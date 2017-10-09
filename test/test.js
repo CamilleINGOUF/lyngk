@@ -65,3 +65,11 @@ LyngkTestCase.prototype.testPlaceColor = function()
     inter.pose("bleu");
     assertTrue(inter.getState() === Lyngk.State.ONE_PIECE && inter.getPiece().getColor() === "bleu");
 }
+
+LyngkTestCase.prototype.testStack = function()
+{
+    var inter = new Lyngk.Intersection();
+    inter.pose("bleu");
+    inter.pose("rouge");
+    assertTrue(inter.getState() === Lyngk.State.STACK && inter.getPiece().getColor() === "rouge");
+}
