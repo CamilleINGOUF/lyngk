@@ -90,4 +90,5 @@ LyngkTestCase.prototype.testOnePieceOnEveryInter = function()
     var plateau = new Lyngk.Engine();
     plateau.init_one_piece();
     assertTrue(plateau.is_full_one_piece());
+    
 }
