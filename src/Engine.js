@@ -26,6 +26,28 @@ Lyngk.Engine = function ()
         }
     }
 
+    this.init_one_piece_every_color = function()
+    {
+        var availableColors = [8,8,8,8,8,3];
+        for (var coord in coordinatesIntersections) {
+            if (coordinatesIntersections.hasOwnProperty(coord))
+            {
+                var randomColor;
+                do{
+                    randomColor = Math.floor(Math.random() * 6);
+                }while(availableColors[randomColor] <= 0)
+                availableColors[randomColor]--;
+                coordinatesIntersections[coord].pose(randomColor);
+                //Pour Jean Rochefort
+            }
+        }
+    }
+
+    this.plateau = function()
+    {
+        return coordinatesIntersections;
+    }
+
     this.is_full_one_piece = function()
     {
         for (var coord in coordinatesIntersections) {
