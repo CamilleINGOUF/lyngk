@@ -50,7 +50,7 @@ LyngkTestCase.prototype.testCloneCoordinates = function()
 LyngkTestCase.prototype.testHashCode = function()
 {
     var tempCoord = new Lyngk.Coordinates("A",3);
-    assertTrue(tempCoord.hash() == (65 + 3));
+    assertTrue(tempCoord.hash() == (653));
 }
 
 LyngkTestCase.prototype.testDefaultIntersec = function()
@@ -83,4 +83,11 @@ LyngkTestCase.prototype.testFullStack = function()
     inter.pose("rouge");
     inter.pose("jaune");
     assertTrue(inter.getState() === Lyngk.State.FULL_STACK && inter.color() === "jaune");
+}
+
+LyngkTestCase.prototype.testOnePieceOnEveryInter = function()
+{
+    var plateau = new Lyngk.Engine();
+    plateau.init_one_piece();
+    assertTrue(plateau.is_full_one_piece());
 }
