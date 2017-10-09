@@ -52,3 +52,9 @@ LyngkTestCase.prototype.testHashCode = function()
     var tempCoord = new Lyngk.Coordinates("A",3);
     assertTrue(tempCoord.hash() == (65 + 3));
 }
+
+LyngkTestCase.prototype.testDefaultIntersec = function()
+{
+    var inter = new Lyngk.Intersection();
+    assertTrue(inter.getState() === Lyngk.State.VACANT);
+}
