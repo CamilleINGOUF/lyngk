@@ -61,6 +61,7 @@ LyngkTestCase.prototype.testDefaultIntersec = function()
 
 LyngkTestCase.prototype.testPlaceColor = function()
 {
-    var inter = new Lyngk.Intersection("bleu");
-    assertTrue(inter.getState() === Lyngk.State.ONE_PIECE && inter.getColor() === "bleu");
+    var inter = new Lyngk.Intersection();
+    inter.pose("bleu");
+    assertTrue(inter.getState() === Lyngk.State.ONE_PIECE && inter.getPiece().getColor() === "bleu");
 }
