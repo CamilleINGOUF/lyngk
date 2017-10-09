@@ -90,5 +90,31 @@ LyngkTestCase.prototype.testOnePieceOnEveryInter = function()
     var plateau = new Lyngk.Engine();
     plateau.init_one_piece();
     assertTrue(plateau.is_full_one_piece());
-    
+}
+
+//8 * each colour plus 3 white pieces
+LyngkTestCase.prototype.testInitEveryColor = function()
+{
+    var engine = new Lyngk.Engine();
+    engine.init_one_piece_every_color();
+    var plateau = engine.plateau();
+
+    var colorNumber = [0,0,0,0,0,0];
+
+    for (var coord in plateau) {
+        if (plateau.hasOwnProperty(coord))
+        {
+            colorNumber[plateau[coord].color()]++;
+        }
+    }
+
+    var flag = true;
+    for(var i = 0; i < colorNumber.length; i++)
+    {
+        if(i <= 4 && colorNumber[i] != 8)
+            flag = false;
+        else if(i == 5 && colorNumber[i] != 3)
+            flag = false;
+    }
+    assertTrue(flag);
 }
