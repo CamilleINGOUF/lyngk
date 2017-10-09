@@ -19,7 +19,11 @@ Lyngk.Intersection = function ()
 
     this.pose = function(c)
     {
+
+        if(state == Lyngk.State.ONE_PIECE)
+            state = Lyngk.State.STACK;
+        else
+            state = Lyngk.State.ONE_PIECE;
         piece = new Lyngk.Piece(c);
-        state = Lyngk.State.ONE_PIECE;
     }
 };
