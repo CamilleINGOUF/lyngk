@@ -73,3 +73,14 @@ LyngkTestCase.prototype.testStack = function()
     inter.pose("rouge");
     assertTrue(inter.getState() === Lyngk.State.STACK && inter.color() === "rouge");
 }
+
+LyngkTestCase.prototype.testFullStack = function()
+{
+    var inter = new Lyngk.Intersection();
+    inter.pose("bleu");
+    inter.pose("rouge");
+    inter.pose("bleu");
+    inter.pose("rouge");
+    inter.pose("jaune");
+    assertTrue(inter.getState() === Lyngk.State.FULL_STACK && inter.color() === "jaune");
+}
