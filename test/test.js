@@ -152,3 +152,17 @@ LyngkTestCase.prototype.testMovePiece = function()
     var plateau = engine.plateau();
     assertTrue(plateau["A3"].getHeight() === 0 && plateau["B3"].color() === colorA3 && plateau["B3"].getHeight() === 2);
 }
+
+//scenar 16
+LyngkTestCase.prototype.testMoveStack = function()
+{
+    var engine = new Lyngk.Engine();
+    var plateau = engine.plateau();
+    var colorA3 = plateau["A3"].color();
+
+    engine.move("A3","B3");
+    var colorB3 = plateau["B3"].color();
+    engine.move("B3","B2");
+
+    assertTrue(plateau["B3"].getHeight() === 0 && plateau["B2"].color() === colorA3 && plateau["B2"].color() === colorB3 && plateau["B2"].getHeight() === 3);
+}
