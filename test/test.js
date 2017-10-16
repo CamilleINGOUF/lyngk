@@ -166,3 +166,17 @@ LyngkTestCase.prototype.testMoveStack = function()
 
     assertTrue(plateau["B3"].getHeight() === 0 && plateau["B2"].color() === colorA3 && plateau["B2"].color() === colorB3 && plateau["B2"].getHeight() === 3);
 }
+
+//scenar 17
+LyngkTestCase.prototype.testMoveOnlyOnStack = function()
+{
+    var engine = new Lyngk.Engine();
+    engine.move("B2","B3");
+
+    var plateau = engine.plateau();
+    var colorB3 = plateau["B3"].color();
+
+    //Supposed to be impossible because B2 is empty
+    engine.move("B3","B2");
+    assertTrue(plateau["B2"].getState() === Lyngk.State.VACANT && plateau["B3"].color() === colorB3);
+}
