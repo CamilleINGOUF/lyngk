@@ -216,3 +216,14 @@ LyngkTestCase.prototype.testMoveFullStackImpossible = function()
     var plateau = engine.plateau();
     assertTrue(plateau["F3"].getHeight() === 5 && plateau["E2"].getHeight() === 1);
 }
+
+//scenar 21
+LyngkTestCase.prototype.testMoveOnePieceOnStackImpossible = function()
+{
+    var engine = new Lyngk.Engine();
+    engine.move("I7", "H6");
+    //Impossible move because h5 is one_piece and h6 is stack
+    engine.move("H5","H6");
+    var plateau = engine.plateau();
+    assertTrue(plateau["H5"].getHeight() === 1 && plateau["H6"].getHeight() === 2);
+}
