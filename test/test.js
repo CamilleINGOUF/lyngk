@@ -132,7 +132,6 @@ LyngkTestCase.prototype.testPileHeight1 = function()
         if(plateau[coord].getHeight() !== 1)
             flag = false;
     }
-
     assertTrue(flag);
 }
 
