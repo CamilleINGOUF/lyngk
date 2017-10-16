@@ -227,3 +227,17 @@ LyngkTestCase.prototype.testMoveOnePieceOnStackImpossible = function()
     var plateau = engine.plateau();
     assertTrue(plateau["H5"].getHeight() === 1 && plateau["H6"].getHeight() === 2);
 }
+
+//scenar 22
+LyngkTestCase.prototype.testMoveHistoire22 = function()
+{
+    var engine = new Lyngk.Engine();
+    engine.move("I7", "H6");
+    engine.move("H6","H5");
+
+    engine.move("G3","G4");
+    //impossible move because H5 is higher than G4
+    engine.move("G4","H5");
+    var plateau = engine.plateau();
+    assertTrue(plateau["H5"].getHeight() === 3 && plateau["G4"].getHeight() === 2);
+}
