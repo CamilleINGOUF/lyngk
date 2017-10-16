@@ -88,7 +88,6 @@ LyngkTestCase.prototype.testFullStack = function()
 LyngkTestCase.prototype.testOnePieceOnEveryInter = function()
 {
     var plateau = new Lyngk.Engine();
-    plateau.init_one_piece();
     assertTrue(plateau.is_full_one_piece());
 }
 
@@ -96,7 +95,6 @@ LyngkTestCase.prototype.testOnePieceOnEveryInter = function()
 LyngkTestCase.prototype.testInitEveryColor = function()
 {
     var engine = new Lyngk.Engine();
-    engine.init_one_piece_every_color();
     var plateau = engine.plateau();
 
     var colorNumber = [0,0,0,0,0,0];
@@ -123,7 +121,6 @@ LyngkTestCase.prototype.testInitEveryColor = function()
 LyngkTestCase.prototype.testPileHeight1 = function()
 {
     var engine = new Lyngk.Engine();
-    engine.init_one_piece_every_color();
     var plateau = engine.plateau();
     var flag = true;
 
@@ -148,7 +145,6 @@ LyngkTestCase.prototype.testStackColor = function()
 LyngkTestCase.prototype.testMovePiece = function()
 {
     var engine = new Lyngk.Engine();
-    engine.init_one_piece_every_color()
     var plateau = engine.plateau();
     var colorA3 = plateau["A3"].color();
 
