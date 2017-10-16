@@ -118,3 +118,20 @@ LyngkTestCase.prototype.testInitEveryColor = function()
     }
     assertTrue(flag);
 }
+
+// Scenar 13
+LyngkTestCase.prototype.testPileHeigth1 = function()
+{
+    var engine = new Lyngk.Engine();
+    engine.init_one_piece_every_color();
+    var plateau = engine.plateau();
+    var flag = true;
+
+    for(var coord in plateau)
+    {
+        if(coord.getHeight() !== 1)
+            flag = false;
+    }
+    
+    assertTrue(flag);
+}
