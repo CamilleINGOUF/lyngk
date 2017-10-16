@@ -143,3 +143,16 @@ LyngkTestCase.prototype.testStackColor = function()
     inter.pose(Lyngk.Color.IVORY);
     assertTrue(inter.color() == Lyngk.Color.IVORY);
 }
+
+//scenar 15
+LyngkTestCase.prototype.testMovePiece = function()
+{
+    var engine = new Lyngk.Engine();
+    engine.init_one_piece_every_color()
+    var plateau = engine.plateau();
+    var colorA3 = plateau["A3"].color();
+
+    engine.move("A3","B3");
+    var plateau = engine.plateau();
+    assertTrue(plateau["A3"].getHeight() === 0 && plateau["B3"].color() === colorA3 && plateau["B3"].getHeight() === 2);
+}
