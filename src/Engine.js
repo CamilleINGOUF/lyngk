@@ -66,7 +66,9 @@ Lyngk.Engine = function ()
         var p2 = new Lyngk.Coordinates(pos2[0],parseInt(pos2[1]));
         if(p1.isValid() && p2.isValid())
         {
-            if(coordinatesIntersections[p2].getState() !== Lyngk.State.VACANT && validMove(p1, p2))
+            if(coordinatesIntersections[p2].getState() !== Lyngk.State.VACANT
+                && validMove(p1, p2)
+                && coordinatesIntersections[p1].getState() !== Lyngk.State.FULL_STACK)
             {
                 var removedStack = coordinatesIntersections[p1].removeStack();
                 for (var i = 0; i < removedStack.length; i++)
