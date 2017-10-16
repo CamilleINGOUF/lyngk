@@ -116,6 +116,9 @@ Lyngk.Engine = function ()
             coordinatesIntersections[p2].getState() === Lyngk.State.STACK)
             flag = false;
 
+        if(coordinatesIntersections[p1].getHeight() < coordinatesIntersections[p2].getHeight())
+            flag = false;
+
         return flag;
     }
 
