@@ -190,3 +190,15 @@ LyngkTestCase.prototype.testNoValidMove = function()
     var plateau = engine.plateau();
     assertTrue(plateau["B3"].getHeight() === 1 && plateau["C2"].getHeight() === 1);
 }
+
+//scenar 19
+LyngkTestCase.prototype.testMoveByOne = function()
+{
+    var engine = new Lyngk.Engine();
+    engine.move("I7", "H6");
+    engine.move("H6","H5");
+    //Impossible move
+    engine.move("H5","H8");
+    var plateau = engine.plateau();
+    assertTrue(plateau["H5"].getHeight() === 3 && plateau["H8"].getHeight() === 1);
+}
