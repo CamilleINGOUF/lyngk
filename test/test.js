@@ -140,7 +140,7 @@ LyngkTestCase.prototype.testPileHeight1 = function()
 LyngkTestCase.prototype.testStackColor = function()
 {
     var inter = new Lyngk.Intersection();
-    inter.pose(new Lyngk.Piece(Lyngk.Color.BLACK));
-    inter.pose(new Lyngk.Piece(Lyngk.Color.IVORY));
+    inter.pose(Lyngk.Color.BLACK);
+    inter.pose(Lyngk.Color.IVORY);
     assertTrue(inter.color() == Lyngk.Color.IVORY);
 }
