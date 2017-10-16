@@ -20,6 +20,16 @@ Lyngk.Coordinates = function (c, l)
         return Lyngk.goodCoordinates.indexOf(private_column+private_line) >= 0;
     };
 
+    this.getColumn = function()
+    {
+        return private_column;
+    }
+
+    this.getLine = function()
+    {
+        return private_line;
+    }
+
     this.toString = function()
     {
         if(this.isValid())

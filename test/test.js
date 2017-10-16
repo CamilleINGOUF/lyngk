@@ -182,11 +182,11 @@ LyngkTestCase.prototype.testMoveOnlyOnStack = function()
 }
 
 //scenar 18
-LyngkTestCase.prototype.testValidMove = function()
+LyngkTestCase.prototype.testNoValidMove = function()
 {
     var engine = new Lyngk.Engine();
     //Impossible Move
-    engine.move("B3","C2");
+    engine.move("B3", "C2");
     var plateau = engine.plateau();
     assertTrue(plateau["B3"].getHeight() === 1 && plateau["C2"].getHeight() === 1);
 }
