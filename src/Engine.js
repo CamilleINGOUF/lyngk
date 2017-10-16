@@ -67,8 +67,7 @@ Lyngk.Engine = function ()
         if(p1.isValid() && p2.isValid())
         {
             if(coordinatesIntersections[p2].getState() !== Lyngk.State.VACANT
-                && validMove(p1, p2)
-                && coordinatesIntersections[p1].getState() !== Lyngk.State.FULL_STACK)
+                && validMove(p1, p2))
             {
                 var removedStack = coordinatesIntersections[p1].removeStack();
                 for (var i = 0; i < removedStack.length; i++)
@@ -109,6 +108,14 @@ Lyngk.Engine = function ()
                 flag = true;
             }
         }
+
+        if(coordinatesIntersections[p1].getState() === Lyngk.State.FULL_STACK)
+            flag = false;
+
+        if(coordinatesIntersections[p1].getState() === Lyngk.State.ONE_PIECE &&
+            coordinatesIntersections[p2].getState() === Lyngk.State.STACK)
+            flag = false;
+
         return flag;
     }
 
