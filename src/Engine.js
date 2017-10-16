@@ -7,13 +7,13 @@ Lyngk.Engine = function ()
 {
     var coordinatesIntersections = [];
 
-    var init = function()
-    {
+    var init = function() {
         var validCoord = Lyngk.goodCoordinates;
-        for(var i = 0; i < validCoord.length; i++)
+        for (var i = 0; i < validCoord.length; i++)
         {
             coordinatesIntersections[validCoord[i]] = new Lyngk.Intersection();
         }
+        init_one_piece_every_color();
     }
 
     this.init_one_piece = function()
@@ -26,7 +26,7 @@ Lyngk.Engine = function ()
         }
     }
 
-    this.init_one_piece_every_color = function()
+    var init_one_piece_every_color = function()
     {
         var availableColors = [8,8,8,8,8,3];
         for (var coord in coordinatesIntersections) {
@@ -58,6 +58,21 @@ Lyngk.Engine = function ()
             }
         }
         return true;
+    }
+
+    this.move =  function (pos1, pos2)
+    {
+        var p1 = new Lyngk.Coordinates(pos1[0],parseInt(pos1[1]));
+        var p2 = new Lyngk.Coordinates(pos2[0],parseInt(pos2[1]));
+        if(p1.isValid() && p2.isValid())
+        {
+            if(coordinatesIntersections[p2].getState() !== Lyngk.State.VACANT)
+            {
+                var removedStack = coordinatesIntersections[p1].removeStack();
+                for (var i = 0; i < removedStack.length; i++)
+                    coordinatesIntersections[p2].pose(removedStack[i].getColor());
+            }
+        }
     }
 
     init();

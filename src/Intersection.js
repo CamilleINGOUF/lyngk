@@ -6,6 +6,7 @@ Lyngk.Intersection = function ()
 {
     var state = Lyngk.State.VACANT;
     var pieces = [];
+    var lastIndexPieces = 0;
     var color;
 
     this.getState = function()
@@ -13,14 +14,14 @@ Lyngk.Intersection = function ()
         return state;
     }
 
-    this.getPiece = function()
+    this.getPieces = function()
     {
-        return piece;
+        return pieces;
     }
 
     this.color = function()
     {
-        return color;
+        return pieces[lastIndexPieces - 1].getColor();
     }
 
     this.pose = function(c)
@@ -33,6 +34,23 @@ Lyngk.Intersection = function ()
             state = Lyngk.State.FULL_STACK;
 
         pieces.push(new Lyngk.Piece(c));
-        color = c;
+        lastIndexPieces++;
+    }
+
+    this.removeStack = function()
+    {
+        if(pieces.length > 0)
+        {
+            state = Lyngk.State.VACANT;
+            var stack = pieces;
+            pieces = [];
+            return stack;
+        }
+        return -1;
+    }
+
+    this.getHeight = function()
+    {
+        return pieces.length;
     }
 };

@@ -35,6 +35,6 @@ Lyngk.Coordinates = function (c, l)
 
     this.hash = function()
     {
-        return private_column.charCodeAt(0) +''+ private_line;
+        return private_column.charCodeAt(0) + '' + private_line;
     }
 };
