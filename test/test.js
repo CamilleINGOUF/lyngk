@@ -213,5 +213,6 @@ LyngkTestCase.prototype.testMoveFullStackImpossible = function()
     engine.move("G4","F3");
     //Impossible move because F3 is fullstack
     engine.move("F3","E2");
+    var plateau = engine.plateau();
     assertTrue(plateau["F3"].getHeight() === 5 && plateau["E2"].getHeight() === 1);
 }
