@@ -180,3 +180,13 @@ LyngkTestCase.prototype.testMoveOnlyOnStack = function()
     engine.move("B3","B2");
     assertTrue(plateau["B2"].getState() === Lyngk.State.VACANT && plateau["B3"].color() === colorB3);
 }
+
+//scenar 18
+LyngkTestCase.prototype.testValidMove = function()
+{
+    var engine = new Lyngk.Engine();
+    //Impossible Move
+    engine.move("B3","C2");
+    var plateau = engine.plateau();
+    assertTrue(plateau["B3"].getHeight() === 1 && plateau["C2"].getHeight() === 1);
+}
