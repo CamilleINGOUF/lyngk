@@ -316,3 +316,22 @@ LyngkTestCase.prototype.testScenar27 = function ()
     //Player one has a score of 1 and only 38 pieces remain on the board
     assertTrue(engine.getScore(Lyngk.Players.PlayerOne) == 1 && engine.nbOfPieces() == 38);
 }
+
+//scenar 28
+LyngkTestCase.prototype.testOnlyMoveClaimedColor = function ()
+{
+    var engine = new Lyngk.Engine();
+    var plateau = engine.plateau();
+
+    //player 1
+    engine.claim(1);
+    engine.move("B2","B3");
+    //player 2
+    engine.claim(2);
+    engine.move("B3","B4");//impossible move, the color is claimed by player 1
+
+    for(var coord in plateau)
+        console.log(coord+" "+plateau[coord].color())
+
+    assertTrue(plateau[coord].getHeight() == 2 && plateau[coord].getHeight() == 1);
+}
