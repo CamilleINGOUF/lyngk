@@ -2,12 +2,16 @@
 
 // enums definition
 Lyngk.Color = {BLACK: 0, IVORY: 1, BLUE: 2, RED: 3, GREEN: 4, WHITE: 5};
+Lyngk.Players = {PlayerOne : 0, PlayerTwo : 1};
 
 Lyngk.Engine = function ()
 {
     var coordinatesIntersections = [];
 
+    var currentPlayer;
+
     var init = function() {
+        currentPlayer = Lyngk.Players.PlayerOne;
         var validCoord = Lyngk.goodCoordinates;
         for (var i = 0; i < validCoord.length; i++)
         {
@@ -46,6 +50,11 @@ Lyngk.Engine = function ()
     this.plateau = function()
     {
         return coordinatesIntersections;
+    }
+
+    this.getCurrentPlayer = function ()
+    {
+        return currentPlayer;
     }
 
     this.is_full_one_piece = function()
@@ -126,6 +135,7 @@ Lyngk.Engine = function ()
 
         for(var i = 0; i < piecesP1.length; i++)
         {
+            //Can't have same color on one stack except for WHITE
             if(coordinatesIntersections[p2].isColorInIntersection(piecesP1[i].getColor()) && piecesP1[i].getColor() != Lyngk.Color.WHITE)
                 flag = false;
         }
