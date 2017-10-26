@@ -252,3 +252,10 @@ LyngkTestCase.prototype.testOnly1ColorInStack = function()
     engine.move("C1","C2");
     assertTrue(heightC1 == plateau["C1"].getHeight() && heughtC2 == plateau["C2"].getHeight());
 }
+
+//scenat 24
+LyngkTestCase.prototype.testGameStartsWithPlayerOne = function ()
+{
+    var engine = new Lyngk.Engine();
+    assertTrue(engine.getCurrentPlayer() == Lyngk.Players.PlayerOne);
+}
