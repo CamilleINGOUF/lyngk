@@ -296,25 +296,22 @@ LyngkTestCase.prototype.testScenar27 = function ()
     engine.move("B3","B4");
     //player 2
     engine.claim(Lyngk.Color.BLUE);
-    engine.move("B2","B3");
+    engine.move("H8","H7");
 
     //player 1
     engine.move("B4","C4");
     //player 2
-    engine.move("B2","B3");
+    engine.move("H7","H6");
 
     //player 1
     engine.move("C4","D4");
     //player 2
-    engine.move("B2","B3");
+    engine.move("H6","G5");
 
     //player 1 (now full stack on D3)
     engine.move("D4","D3");
-    //player 2
-    engine.move("B2","B3");
-
-    for(var coord in plateau)
-        console.log(coord+" "+plateau[coord].getHeight()+" "+plateau[coord].color())
+    //player 2 (makes a bad move so he doesn't win a point)
+    engine.move("G5","F3");
 
     //Player one has a score of 1 and only 38 pieces remain on the board
     assertTrue(engine.getScore(Lyngk.Players.PlayerOne) == 1 && engine.nbOfPieces() == 38);

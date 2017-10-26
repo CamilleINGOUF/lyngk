@@ -13,6 +13,9 @@ Lyngk.Engine = function ()
     var claimedColorsPlayerOne = [];
     var claimedColorsPlayerTwo = [];
 
+    var scorePlayerOne = 0;
+    var scorePlayerTwo = 0;
+
     var init = function() {
         currentPlayer = Lyngk.Players.PlayerOne;
         var validCoord = Lyngk.goodCoordinates;
@@ -80,6 +83,24 @@ Lyngk.Engine = function ()
         return true;
     }
 
+    this.getScore = function(player)
+    {
+        if(player == Lyngk.Players.PlayerOne)
+            return scorePlayerOne
+        else
+            return scorePlayerTwo
+    }
+
+    this.nbOfPieces = function ()
+    {
+        var nb = 0;
+        for(var coord in coordinatesIntersections)
+        {
+            nb += coordinatesIntersections[coord].getHeight();
+        }
+        return nb;
+    }
+
     this.move =  function (pos1, pos2)
     {
         var p1 = new Lyngk.Coordinates(pos1[0],parseInt(pos1[1]));
@@ -92,6 +113,7 @@ Lyngk.Engine = function ()
                 var removedStack = coordinatesIntersections[p1].removeStack();
                 for (var i = 0; i < removedStack.length; i++)
                     coordinatesIntersections[p2].pose(removedStack[i].getColor());
+                this.checkGameState(p2);
                 changePlayer();
             }
         }
@@ -111,6 +133,22 @@ Lyngk.Engine = function ()
                 if( claimedColorsPlayerTwo.length < 2)
                     claimedColorsPlayerTwo.push(color);
             }
+        }
+    }
+
+    this.checkGameState = function (lastPos)
+    {
+        var color = coordinatesIntersections[lastPos].color();
+
+        //if last move makes full stake AND if the color of the stack is claimed by the current player
+        if(coordinatesIntersections[lastPos].getState() == Lyngk.State.FULL_STACK && this.getClaimedColors(currentPlayer).indexOf(color) >= 0)
+        {
+            if(currentPlayer == Lyngk.Players.PlayerOne)
+                scorePlayerOne++;
+            else
+                scorePlayerTwo++;
+
+            coordinatesIntersections[lastPos].removeStack();
         }
     }
 
