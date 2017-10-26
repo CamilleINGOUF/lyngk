@@ -277,6 +277,7 @@ LyngkTestCase.prototype.testPlayersClaimColors = function ()
     engine.claim(Lyngk.Color.BLUE);
 
     var claimedColorsOne = engine.getClaimedColors(Lyngk.Players.PlayerOne);
+
     var claimedColorstwo = engine.getClaimedColors(Lyngk.Players.PlayerTwo);
 
     assertTrue(claimedColorsOne[0] == Lyngk.Color.BLACK && claimedColorstwo[0] == Lyngk.Color.BLUE);

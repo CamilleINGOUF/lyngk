@@ -10,6 +10,9 @@ Lyngk.Engine = function ()
 
     var currentPlayer;
 
+    var claimedColorsPlayerOne = [];
+    var claimedColorsPlayerTwo = [];
+
     var init = function() {
         currentPlayer = Lyngk.Players.PlayerOne;
         var validCoord = Lyngk.goodCoordinates;
@@ -57,6 +60,14 @@ Lyngk.Engine = function ()
         return currentPlayer;
     }
 
+    this.getClaimedColors = function (player)
+    {
+        if(player == Lyngk.Players.PlayerOne)
+            return claimedColorsPlayerOne;
+        else
+            return claimedColorsPlayerTwo;
+    }
+
     this.is_full_one_piece = function()
     {
         for (var coord in coordinatesIntersections) {
@@ -82,6 +93,23 @@ Lyngk.Engine = function ()
                 for (var i = 0; i < removedStack.length; i++)
                     coordinatesIntersections[p2].pose(removedStack[i].getColor());
                 changePlayer();
+            }
+        }
+    }
+
+    this.claim = function (color)
+    {
+        if(claimedColorsPlayerOne.indexOf(color) < 0 && claimedColorsPlayerTwo.indexOf(color) < 0)
+        {
+            if(currentPlayer == Lyngk.Players.PlayerOne)
+            {
+                if( claimedColorsPlayerOne.length < 2)
+                    claimedColorsPlayerOne.push(color);
+            }
+            else
+            {
+                if( claimedColorsPlayerTwo.length < 2)
+                    claimedColorsPlayerTwo.push(color);
             }
         }
     }
