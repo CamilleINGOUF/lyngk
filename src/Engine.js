@@ -76,6 +76,8 @@ Lyngk.Engine = function ()
         }
     }
 
+
+
     var validMove = function(p1, p2)
     {
         var flag = false;

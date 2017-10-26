@@ -1,4 +1,5 @@
 'use strict';
+Math.seedrandom('1234');
 
 var LyngkTestCase = TestCase("LyngkTestCase");
 
@@ -240,4 +241,22 @@ LyngkTestCase.prototype.testMoveHistoire22 = function()
     engine.move("G4","H5");
     var plateau = engine.plateau();
     assertTrue(plateau["H5"].getHeight() === 3 && plateau["G4"].getHeight() === 2);
+}
+
+//scenar 23
+LyngkTestCase.prototype.testOnly1ColorInStack = function()
+{
+    var engine = new Lyngk.Engine();
+    var plateau = engine.plateau();
+
+    for (var coord in plateau) 
+    {
+        console.log(plateau[coord].color()+" "+coord);
+    }
+
+    var heightC1 = plateau["C1"].getHeight();
+    var heughtC2 = plateau["C2"].getHeight();
+
+    engine.move("C1","C2");
+    assertTrue(heightC1 == plateau["C1"].getHeight() && heughtC2 == plateau["C2"].getHeight());
 }

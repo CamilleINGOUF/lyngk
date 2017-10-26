@@ -7,7 +7,6 @@ Lyngk.Intersection = function ()
     var state = Lyngk.State.VACANT;
     var pieces = [];
     var lastIndexPieces = 0;
-    var color;
 
     this.getState = function()
     {
@@ -52,5 +51,10 @@ Lyngk.Intersection = function ()
     this.getHeight = function()
     {
         return pieces.length;
+    }
+
+    this.isColorInIntersection = function(color)
+    {
+
     }
 };
