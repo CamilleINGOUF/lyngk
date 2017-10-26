@@ -289,11 +289,13 @@ LyngkTestCase.prototype.testScenar27 = function ()
     var engine = new Lyngk.Engine();
     var plateau = engine.plateau();
 
-    //Only player one is import here
+    //Only player one is important here
 
     //player 1
+    engine.claim(Lyngk.Color.GREEN);
     engine.move("B3","B4");
     //player 2
+    engine.claim(Lyngk.Color.BLUE);
     engine.move("B2","B3");
 
     //player 1
@@ -312,7 +314,7 @@ LyngkTestCase.prototype.testScenar27 = function ()
     engine.move("B2","B3");
 
     for(var coord in plateau)
-        console.log(coord+" "+plateau[coord].getHeight())
+        console.log(coord+" "+plateau[coord].getHeight()+" "+plateau[coord].color())
 
     //Player one has a score of 1 and only 38 pieces remain on the board
     assertTrue(engine.getScore(Lyngk.Players.PlayerOne) == 1 && engine.nbOfPieces() == 38);
