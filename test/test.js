@@ -264,6 +264,6 @@ LyngkTestCase.prototype.testGameStartsWithPlayerOne = function ()
 LyngkTestCase.prototype.testChangePlayerEveryMove = function()
 {
     var engine = new Lyngk.Engine();
-    engine.move("C1","C2");
+    engine.move("A3","B3");
     assertTrue(engine.getCurrentPlayer() == Lyngk.Players.PlayerTwo);
 }

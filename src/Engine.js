@@ -81,11 +81,18 @@ Lyngk.Engine = function ()
                 var removedStack = coordinatesIntersections[p1].removeStack();
                 for (var i = 0; i < removedStack.length; i++)
                     coordinatesIntersections[p2].pose(removedStack[i].getColor());
+                changePlayer();
             }
         }
     }
 
-
+    var changePlayer = function()
+    {
+        if(currentPlayer == Lyngk.Players.PlayerOne)
+            currentPlayer = Lyngk.Players.PlayerTwo;
+        else
+            currentPlayer = Lyngk.Players.PlayerOne;
+    }
 
     var validMove = function(p1, p2)
     {
