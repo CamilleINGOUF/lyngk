@@ -20,7 +20,10 @@ Lyngk.Intersection = function ()
 
     this.color = function()
     {
-        return pieces[lastIndexPieces - 1].getColor();
+        if(pieces.length > 0)
+            return pieces[lastIndexPieces - 1].getColor();
+        else
+            return -1
     }
 
     this.pose = function(c)
@@ -55,6 +58,12 @@ Lyngk.Intersection = function ()
 
     this.isColorInIntersection = function(color)
     {
-
+        var flag = false;
+        for(var  i = 0; i < pieces.length; i++)
+        {
+            if(pieces[i].getColor() == color)
+                flag = true;
+        }
+        return flag;
     }
 };

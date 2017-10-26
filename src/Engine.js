@@ -118,10 +118,20 @@ Lyngk.Engine = function ()
             coordinatesIntersections[p2].getState() === Lyngk.State.STACK)
             flag = false;
 
+        //Le pile p1 doit etre plus grande que p2
         if(coordinatesIntersections[p1].getHeight() < coordinatesIntersections[p2].getHeight())
             flag = false;
 
+        var piecesP1 = coordinatesIntersections[p1].getPieces();
+
+        for(var i = 0; i < piecesP1.length; i++)
+        {
+            if(coordinatesIntersections[p2].isColorInIntersection(piecesP1[i].getColor()) && piecesP1[i].getColor() != Lyngk.Color.WHITE)
+                flag = false;
+        }
+
         return flag;
+
     }
 
     init();

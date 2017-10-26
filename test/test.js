@@ -196,26 +196,26 @@ LyngkTestCase.prototype.testNoValidMove = function()
 LyngkTestCase.prototype.testMoveByOne = function()
 {
     var engine = new Lyngk.Engine();
-    engine.move("I7", "H6");
-    engine.move("H6","H5");
     //Impossible move
     engine.move("H5","H8");
     var plateau = engine.plateau();
-    assertTrue(plateau["H5"].getHeight() === 3 && plateau["H8"].getHeight() === 1);
+
+    assertTrue(plateau["H5"].getHeight() === 1 && plateau["H8"].getHeight() === 1);
 }
 
 //scenar 20
 LyngkTestCase.prototype.testMoveFullStackImpossible = function()
 {
     var engine = new Lyngk.Engine();
-    engine.move("I7", "H6");
-    engine.move("H6","H5");
-    engine.move("H5","G4");
-    engine.move("G4","F3");
+    engine.move("D2","C1")
+    engine.move("C1", "C2");
+    engine.move("C2","C3");
+    engine.move("C3","C4");
     //Impossible move because F3 is fullstack
-    engine.move("F3","E2");
+    engine.move("C4","B5");
     var plateau = engine.plateau();
-    assertTrue(plateau["F3"].getHeight() === 5 && plateau["E2"].getHeight() === 1);
+
+    assertTrue(plateau["C4"].getHeight() === 5 && plateau["B5"].getHeight() === 1);
 }
 
 //scenar 21
@@ -233,14 +233,11 @@ LyngkTestCase.prototype.testMoveOnePieceOnStackImpossible = function()
 LyngkTestCase.prototype.testMoveHistoire22 = function()
 {
     var engine = new Lyngk.Engine();
-    engine.move("I7", "H6");
-    engine.move("H6","H5");
-
-    engine.move("G3","G4");
-    //impossible move because H5 is higher than G4
     engine.move("G4","H5");
+    //impossible move because H5 is higher than H6
+    engine.move("H6","H5")
     var plateau = engine.plateau();
-    assertTrue(plateau["H5"].getHeight() === 3 && plateau["G4"].getHeight() === 2);
+    assertTrue(plateau["H6"].getHeight() === 1 && plateau["H5"].getHeight() === 2);
 }
 
 //scenar 23
@@ -248,11 +245,6 @@ LyngkTestCase.prototype.testOnly1ColorInStack = function()
 {
     var engine = new Lyngk.Engine();
     var plateau = engine.plateau();
-
-    for (var coord in plateau) 
-    {
-        console.log(plateau[coord].color()+" "+coord);
-    }
 
     var heightC1 = plateau["C1"].getHeight();
     var heughtC2 = plateau["C2"].getHeight();
