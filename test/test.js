@@ -267,3 +267,17 @@ LyngkTestCase.prototype.testChangePlayerEveryMove = function()
     engine.move("A3","B3");
     assertTrue(engine.getCurrentPlayer() == Lyngk.Players.PlayerTwo);
 }
+
+//scenar 26
+LyngkTestCase.prototype.testPlayersClaimColors = function ()
+{
+    var engine = new Lyngk.Engine();
+    engine.claim(Lyngk.Color.BLACK);
+    engine.move("C1","C2");
+    engine.claim(Lyngk.Color.BLUE);
+
+    var claimedColorsOne = engine.getClaimedColors(Lyngk.Players.PlayerOne);
+    var claimedColorstwo = engine.getClaimedColors(Lyngk.Players.PlayerTwo);
+
+    assertTrue(claimedColorsOne[0] == Lyngk.Color.BLACK && claimedColorstwo[0] == Lyngk.Color.BLUE);
+}
