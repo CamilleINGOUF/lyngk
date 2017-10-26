@@ -213,6 +213,18 @@ Lyngk.Engine = function ()
                 flag = false;
         }
 
+        if(currentPlayer == Lyngk.Players.PlayerOne)
+        {
+
+            if(claimedColorsPlayerTwo.indexOf(coordinatesIntersections[p1].color()) >= 0)
+                flag = false;
+        }
+        else
+        {
+            if(claimedColorsPlayerOne.indexOf(coordinatesIntersections[p1].color()) >= 0)
+                flag = false;
+        }
+
         return flag;
 
     }

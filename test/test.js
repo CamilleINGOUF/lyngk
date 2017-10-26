@@ -330,8 +330,5 @@ LyngkTestCase.prototype.testOnlyMoveClaimedColor = function ()
     engine.claim(2);
     engine.move("B3","B4");//impossible move, the color is claimed by player 1
 
-    for(var coord in plateau)
-        console.log(coord+" "+plateau[coord].color())
-
-    assertTrue(plateau[coord].getHeight() == 2 && plateau[coord].getHeight() == 1);
+    assertTrue(plateau["B3"].getHeight() == 2 && plateau["B4"].getHeight() == 1);
 }
