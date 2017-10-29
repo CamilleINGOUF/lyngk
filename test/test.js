@@ -338,6 +338,6 @@ LyngkTestCase.prototype.testScenar29 = function ()
 {
     var engine = new Lyngk.Engine();
     //No color claimed so player can't move white pieces
-    var availableMoves = engine.availableMoves();
-    assertTrue(availableMoves.length == 40);
+    var availableMovablePieces = engine.availableMovablePieces();
+    assertTrue(availableMovablePiece.length == 40);
 }
