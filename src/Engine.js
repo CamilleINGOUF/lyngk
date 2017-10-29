@@ -218,15 +218,63 @@ Lyngk.Engine = function ()
 
             if(claimedColorsPlayerTwo.indexOf(coordinatesIntersections[p1].color()) >= 0)
                 flag = false;
+
+            if(claimedColorsPlayerOne.length == 0 && coordinatesIntersections[p1].color() == Lyngk.Color.WHITE)
+                flag = false;
         }
         else
         {
             if(claimedColorsPlayerOne.indexOf(coordinatesIntersections[p1].color()) >= 0)
                 flag = false;
+
+            if(claimedColorsPlayerTwo.length == 0 && coordinatesIntersections[p1].color() == Lyngk.Color.WHITE)
+                flag = false;
         }
+
+
 
         return flag;
 
+    }
+
+    this.availableMoves = function ()
+    {
+        var moves = [];
+        for(var i = 0; i < Lyngk.goodCoordinates.length; i++)
+        {
+            for(var j = i; j < Lyngk.goodCoordinates.length; j++)
+            {
+                var pos1 = Lyngk.goodCoordinates[i];
+                var pos2 = Lyngk.goodCoordinates[j];
+                var p1 = new Lyngk.Coordinates(pos1[0],parseInt(pos1[1]));
+                var p2 = new Lyngk.Coordinates(pos2[0],parseInt(pos2[1]));
+                if(validMove(p1,p2))
+                    moves.push(pos1+";"+pos2);
+            }
+        }
+        return moves;
+    }
+
+    this.availableMovablePiecesForPlayer = function (player)
+    {
+        var movablePieces = [];
+        for(var i = 0; i < Lyngk.goodCoordinates.length; i++)
+        {
+            if(player = Lyngk.Players.PlayerOne)
+            {
+
+                if((claimedColorsPlayerOne.length != 0 || coordinatesIntersections[Lyngk.goodCoordinates[i]].color() != Lyngk.Color.WHITE)
+                    && claimedColorsPlayerTwo.indexOf(coordinatesIntersections[Lyngk.goodCoordinates[i]].color()) < 0)
+                    movablePieces.push(Lyngk.goodCoordinates[i])
+            }
+            else
+            {
+                if((claimedColorsPlayerTwo.length != 0 || coordinatesIntersections[Lyngk.goodCoordinates[i]].color() != Lyngk.Color.WHITE)
+                    && claimedColorsPlayerOne.indexOf(coordinatesIntersections[Lyngk.goodCoordinates[i]].color()) < 0)
+                    movablePieces.push(Lyngk.goodCoordinates[i])
+            }
+        }
+        return movablePieces;
     }
 
     init();
