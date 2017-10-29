@@ -332,3 +332,12 @@ LyngkTestCase.prototype.testOnlyMoveClaimedColor = function ()
 
     assertTrue(plateau["B3"].getHeight() == 2 && plateau["B4"].getHeight() == 1);
 }
+
+//scenar 29
+LyngkTestCase.prototype.testScenar29 = function ()
+{
+    var engine = new Lyngk.Engine();
+    //No color claimed so player can't move white pieces
+    var availableMoves = engine.availableMoves();
+    assertTrue(availableMoves.length == 40);
+}
