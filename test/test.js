@@ -361,3 +361,32 @@ LyngkTestCase.prototype.testScenar31 = function ()
 
     assertTrue(engine.availableMoveFromCoordinate("F7").length == 6);
 }
+
+//scenar 32
+LyngkTestCase.prototype.testScenar32 = function ()
+{
+    var engine = new Lyngk.Engine();
+
+    engine.claim(Lyngk.Color.BLACK);
+    engine.move("I7","H6");
+
+    engine.claim(Lyngk.Color.BLUE);
+    engine.move("A3","B3");
+
+    engine.claim(Lyngk.Color.IVORY);
+    engine.move("G6","G5");
+
+    engine.claim(Lyngk.Color.GREEN);
+    engine.move("E3","E2");
+
+    engine.move("G5","G4");
+
+    engine.move("","");
+
+    var plateau = engine.plateau();
+    for(var coord in plateau)
+        console.log(coord+" "+plateau[coord].getHeight()+" "+plateau[coord].color());
+
+
+    console.log("Player : "+engine.getCurrentPlayer());
+}
