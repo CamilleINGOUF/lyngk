@@ -359,8 +359,5 @@ LyngkTestCase.prototype.testScenar31 = function ()
     var engine = new Lyngk.Engine();
     var plateau = engine.plateau();
 
-    for(var coord in plateau)
-        console.log(coord+" "+plateau[coord].color());
-
-    assertTrue(engine.availableMoveFromCoordinate().length == 6);
+    assertTrue(engine.availableMoveFromCoordinate("F7").length == 6);
 }

@@ -164,7 +164,7 @@ Lyngk.Engine = function ()
     {
         var flag = false;
         //If vertical move
-        if(p1.getColumn() === p2.getColumn())
+        if(p1.getColumn().charCodeAt(0) === p2.getColumn().charCodeAt(0))
         {
             var lineDiff = p1.getLine() - p2.getLine();
             //up or down
@@ -174,24 +174,29 @@ Lyngk.Engine = function ()
             }
         }
         //IF move to left
-        else if(p1.getColumn() < p2.getColumn())
+        else if(p1.getColumn().charCodeAt(0) < p2.getColumn().charCodeAt(0))
         {
             var lineDiff = p1.getLine() - p2.getLine();
-            //Only if stay on same line or go down
+            //Only if it stays on same line or go down
             if(lineDiff === 0 || lineDiff === -1)
             {
                 flag = true;
             }
-        }
-        else if(p1.getColumn() > p2.getColumn())
+        }//OR right
+        else if(p1.getColumn().charCodeAt(0) > p2.getColumn().charCodeAt(0))
         {
             var lineDiff = p1.getLine() - p2.getLine();
-            //Only if stay on same line or go down
+            //Only if it stays on same line or go up
             if(lineDiff === 1 || lineDiff === 0)
             {
                 flag = true;
             }
         }
+
+        //if moving too far on the right on the left
+        var columnDiff = ((p1.getColumn()).charCodeAt(0) - (p2.getColumn()).charCodeAt(0));
+        if(columnDiff > 1 || columnDiff < -1)
+            flag = false;
 
         if(coordinatesIntersections[p1].getState() === Lyngk.State.FULL_STACK)
             flag = false;
@@ -275,6 +280,22 @@ Lyngk.Engine = function ()
             }
         }
         return movablePieces;
+    }
+
+    this.availableMoveFromCoordinate = function (coordinate)
+    {
+        var moves = [];
+        var p1 = new Lyngk.Coordinates(coordinate[0],parseInt(coordinate[1]));
+        for(var i = 0; i < Lyngk.goodCoordinates.length; i++)
+        {
+            var pos2 = Lyngk.goodCoordinates[i];
+            var p2 = new Lyngk.Coordinates(pos2[0],parseInt(pos2[1]));
+            if(validMove(p1,p2))
+            {
+                moves.push(pos2);
+            }
+        }
+        return moves;
     }
 
     init();
