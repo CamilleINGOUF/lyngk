@@ -3,6 +3,7 @@
 // enums definition
 Lyngk.Color = {BLACK: 0, IVORY: 1, BLUE: 2, RED: 3, GREEN: 4, WHITE: 5};
 Lyngk.Players = {PlayerOne : 0, PlayerTwo : 1};
+Lyngk.GameState = {ONGOING : 0, OVER : 1};
 
 Lyngk.Engine = function ()
 {
@@ -15,6 +16,10 @@ Lyngk.Engine = function ()
 
     var scorePlayerOne = 0;
     var scorePlayerTwo = 0;
+
+    var gameState = Lyngk.GameState.ONGOING;
+
+    var winner = -1;
 
     var init = function() {
         currentPlayer = Lyngk.Players.PlayerOne;
@@ -71,6 +76,16 @@ Lyngk.Engine = function ()
             return claimedColorsPlayerTwo;
     }
 
+    this.getGameState = function ()
+    {
+        return gameState;
+    }
+
+    this.getWinner = function ()
+    {
+        return winner;
+    }
+
     this.is_full_one_piece = function()
     {
         for (var coord in coordinatesIntersections) {
@@ -114,7 +129,9 @@ Lyngk.Engine = function ()
                 for (var i = 0; i < removedStack.length; i++)
                     coordinatesIntersections[p2].pose(removedStack[i].getColor());
                 this.checkGameState(p2);
+                this.refreshGameState();
                 changePlayer();
+
             }
         }
     }
@@ -198,6 +215,9 @@ Lyngk.Engine = function ()
         if(columnDiff > 1 || columnDiff < -1)
             flag = false;
 
+        if(coordinatesIntersections[p1].getHeight() == 0 || coordinatesIntersections[p2].getHeight() == 0)
+            flag = false;
+
         if(coordinatesIntersections[p1].getState() === Lyngk.State.FULL_STACK)
             flag = false;
 
@@ -247,7 +267,7 @@ Lyngk.Engine = function ()
         var moves = [];
         for(var i = 0; i < Lyngk.goodCoordinates.length; i++)
         {
-            for(var j = i; j < Lyngk.goodCoordinates.length; j++)
+            for(var j = 0; j < Lyngk.goodCoordinates.length; j++)
             {
                 var pos1 = Lyngk.goodCoordinates[i];
                 var pos2 = Lyngk.goodCoordinates[j];
@@ -296,6 +316,33 @@ Lyngk.Engine = function ()
             }
         }
         return moves;
+    }
+
+    this.refreshGameState = function ()
+    {
+        var nbMoveLeft = 0;
+        nbMoveLeft += this.availableMoves().length;
+        changePlayer();
+        nbMoveLeft += this.availableMoves().length;
+        changePlayer();
+
+        if(nbMoveLeft == 0)
+        {
+            gameState = Lyngk.GameState.OVER;
+            this.setWinner();
+        }
+    }
+
+    this.setWinner = function ()
+    {
+        if(this.getScore(Lyngk.Players.PlayerOne) > this.getScore(Lyngk.Players.PlayerTwo))//if player one has more full stack
+            winner = Lyngk.Players.PlayerOne;
+        else if(this.getScore(Lyngk.Players.PlayerOne) < this.getScore(Lyngk.Players.PlayerTwo))//if player two has more full stack
+            winner = Lyngk.Players.PlayerTwo
+        else//if equal number of full stack
+        {
+            
+        }
     }
 
     init();
