@@ -367,21 +367,84 @@ LyngkTestCase.prototype.testScenar32 = function ()
 {
     var engine = new Lyngk.Engine();
 
+    //Player 1
     engine.claim(Lyngk.Color.BLACK);
     engine.move("I7","H6");
 
+    //Player 2
     engine.claim(Lyngk.Color.BLUE);
     engine.move("A3","B3");
 
+    //Player 1
     engine.claim(Lyngk.Color.IVORY);
     engine.move("G6","G5");
 
+    //Player 2
     engine.claim(Lyngk.Color.GREEN);
     engine.move("E3","E2");
 
+    //Player 1
     engine.move("G5","G4");
 
-    engine.move("","");
+    //Player 2
+    engine.move("B3","B4");
+
+    //Player 1
+    engine.move("G4","F3");
+
+    //Player 2
+    engine.move("B4","C4");
+
+    //Player 1
+    engine.move("E5","E6");
+
+    //Player 2
+    engine.move("E4","D4");
+
+    //Player 1
+    engine.move("E6","E7");
+
+    //Player 2
+    engine.move("D4","C3");
+
+    //Player 1
+    engine.move("E7","E8");
+
+    //Player 2
+    engine.move("C3","C2");
+
+    //Player 1
+    engine.move("D7","D6");
+
+    //Player 2
+    engine.move("C6","C7");
+
+    //Player 1
+    engine.move("D6","D5");
+
+    //Player 2
+    engine.move("F8","F7");
+
+    //Player 1
+    engine.move("F6","F5");
+
+    //Player 2
+    engine.move("C1","D2");
+
+    //Player 1
+    engine.move("H7","G7");
+
+    //Player 2
+    engine.move("C2","B2");
+
+    //Player 1
+    engine.move("F5","F4");
+
+    //Player 2
+    engine.move("D2","D3");
+
+    //Player 1
+    engine.move("G8","H8");
 
     var plateau = engine.plateau();
     for(var coord in plateau)
@@ -389,4 +452,10 @@ LyngkTestCase.prototype.testScenar32 = function ()
 
 
     console.log("Player : "+engine.getCurrentPlayer());
+    console.log("Move restants : "+engine.availableMoves())
+
+    console.log("score player one : "+engine.getScore(Lyngk.Players.PlayerOne));
+    console.log("score player two : "+engine.getScore(Lyngk.Players.PlayerTwo));
+
+    assertTrue(engine.getGameState() == Lyngk.GameState.OVER && engine.getWinner() == Lyngk.Players.PlayerTwo);
 }
