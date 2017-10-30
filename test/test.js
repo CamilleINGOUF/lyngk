@@ -352,3 +352,15 @@ LyngkTestCase.prototype.testScenar30 = function ()
 
     assertTrue(engine.availableMovablePiecesForPlayer(engine.getCurrentPlayer()).length == 32);
 }
+
+//scenar 31
+LyngkTestCase.prototype.testScenar31 = function ()
+{
+    var engine = new Lyngk.Engine();
+    var plateau = engine.plateau();
+
+    for(var coord in plateau)
+        console.log(coord+" "+plateau[coord].color());
+
+    assertTrue(engine.availableMoveFromCoordinate().length == 6);
+}
