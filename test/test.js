@@ -1,9 +1,8 @@
-'use strict';
-Math.seedrandom('1234');
+"use strict";
+Math.seedrandom("1234");
 
 var LyngkTestCase = TestCase("LyngkTestCase");
 
-//Rechercher une coordonnée qui n'existe pas -> A1
 LyngkTestCase.prototype.testCoordinateNotExist = function()
 {
     var coord = new Lyngk.Coordinates('A',1);
@@ -14,7 +13,7 @@ LyngkTestCase.prototype.testCoordinateNotExist = function()
 LyngkTestCase.prototype.test43AvailablesCoordinates = function()
 {
     var count = 0;
-    var alpha = "ABCDEFGHI"
+    var alpha = "ABCDEFGHI";
 
     for(var i = 0; i < alpha.length; i++)
     {
@@ -89,7 +88,7 @@ LyngkTestCase.prototype.testFullStack = function()
 LyngkTestCase.prototype.testOnePieceOnEveryInter = function()
 {
     var plateau = new Lyngk.Engine();
-    assertTrue(plateau.is_full_one_piece());
+    assertTrue(plateau.isFullOnePiece());
 }
 
 //8 * each colour plus 3 white pieces
