@@ -341,7 +341,7 @@ Lyngk.Engine = function ()
             winner = Lyngk.Players.PlayerTwo
         else//if equal number of full stack
         {
-            
+
         }
     }
 
