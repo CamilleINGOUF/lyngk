@@ -87,22 +87,22 @@ LyngkTestCase.prototype.testFullStack = function()
 
 LyngkTestCase.prototype.testOnePieceOnEveryInter = function()
 {
-    var plateau = new Lyngk.Engine();
-    assertTrue(plateau.isFullOnePiece());
+    var board = new Lyngk.Engine();
+    assertTrue(board.isFullOnePiece());
 }
 
 //8 * each colour plus 3 white pieces
 LyngkTestCase.prototype.testInitEveryColor = function()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
+    var board = engine.board();
 
     var colorNumber = [0,0,0,0,0,0];
 
-    for (var coord in plateau) {
-        if (plateau.hasOwnProperty(coord))
+    for (var coord in board) {
+        if (board.hasOwnProperty(coord))
         {
-            colorNumber[plateau[coord].color()]++;
+            colorNumber[board[coord].color()]++;
         }
     }
 
@@ -121,12 +121,12 @@ LyngkTestCase.prototype.testInitEveryColor = function()
 LyngkTestCase.prototype.testPileHeight1 = function()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
+    var board = engine.board();
     var flag = true;
 
-    for(var coord in plateau)
+    for(var coord in board)
     {
-        if(plateau[coord].getHeight() !== 1)
+        if(board[coord].getHeight() !== 1)
             flag = false;
     }
     assertTrue(flag);
@@ -145,26 +145,26 @@ LyngkTestCase.prototype.testStackColor = function()
 LyngkTestCase.prototype.testMovePiece = function()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
-    var colorA3 = plateau["A3"].color();
+    var board = engine.board();
+    var colorA3 = board["A3"].color();
 
     engine.move("A3","B3");
-    var plateau = engine.plateau();
-    assertTrue(plateau["A3"].getHeight() === 0 && plateau["B3"].color() === colorA3 && plateau["B3"].getHeight() === 2);
+    var board = engine.board();
+    assertTrue(board["A3"].getHeight() === 0 && board["B3"].color() === colorA3 && board["B3"].getHeight() === 2);
 }
 
 //scenar 16
 LyngkTestCase.prototype.testMoveStack = function()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
-    var colorA3 = plateau["A3"].color();
+    var board = engine.board();
+    var colorA3 = board["A3"].color();
 
     engine.move("A3","B3");
-    var colorB3 = plateau["B3"].color();
+    var colorB3 = board["B3"].color();
     engine.move("B3","B2");
 
-    assertTrue(plateau["B3"].getHeight() === 0 && plateau["B2"].color() === colorA3 && plateau["B2"].color() === colorB3 && plateau["B2"].getHeight() === 3);
+    assertTrue(board["B3"].getHeight() === 0 && board["B2"].color() === colorA3 && board["B2"].color() === colorB3 && board["B2"].getHeight() === 3);
 }
 
 //scenar 17
@@ -173,12 +173,12 @@ LyngkTestCase.prototype.testMoveOnlyOnStack = function()
     var engine = new Lyngk.Engine();
     engine.move("B2","B3");
 
-    var plateau = engine.plateau();
-    var colorB3 = plateau["B3"].color();
+    var board = engine.board();
+    var colorB3 = board["B3"].color();
 
     //Supposed to be impossible because B2 is empty
     engine.move("B3","B2");
-    assertTrue(plateau["B2"].getState() === Lyngk.State.VACANT && plateau["B3"].color() === colorB3);
+    assertTrue(board["B2"].getState() === Lyngk.State.VACANT && board["B3"].color() === colorB3);
 }
 
 //scenar 18
@@ -187,8 +187,8 @@ LyngkTestCase.prototype.testNoValidMove = function()
     var engine = new Lyngk.Engine();
     //Impossible Move
     engine.move("B3", "C2");
-    var plateau = engine.plateau();
-    assertTrue(plateau["B3"].getHeight() === 1 && plateau["C2"].getHeight() === 1);
+    var board = engine.board();
+    assertTrue(board["B3"].getHeight() === 1 && board["C2"].getHeight() === 1);
 }
 
 //scenar 19
@@ -197,9 +197,9 @@ LyngkTestCase.prototype.testMoveByOne = function()
     var engine = new Lyngk.Engine();
     //Impossible move
     engine.move("H5","H8");
-    var plateau = engine.plateau();
+    var board = engine.board();
 
-    assertTrue(plateau["H5"].getHeight() === 1 && plateau["H8"].getHeight() === 1);
+    assertTrue(board["H5"].getHeight() === 1 && board["H8"].getHeight() === 1);
 }
 
 //scenar 20
@@ -212,9 +212,9 @@ LyngkTestCase.prototype.testMoveFullStackImpossible = function()
     engine.move("C3","C4");
     //Impossible move because F3 is fullstack
     engine.move("C4","B5");
-    var plateau = engine.plateau();
+    var board = engine.board();
 
-    assertTrue(plateau["C4"].getHeight() === 5 && plateau["B5"].getHeight() === 1);
+    assertTrue(board["C4"].getHeight() === 5 && board["B5"].getHeight() === 1);
 }
 
 //scenar 21
@@ -224,8 +224,8 @@ LyngkTestCase.prototype.testMoveOnePieceOnStackImpossible = function()
     engine.move("I7", "H6");
     //Impossible move because h5 is one_piece and h6 is stack
     engine.move("H5","H6");
-    var plateau = engine.plateau();
-    assertTrue(plateau["H5"].getHeight() === 1 && plateau["H6"].getHeight() === 2);
+    var board = engine.board();
+    assertTrue(board["H5"].getHeight() === 1 && board["H6"].getHeight() === 2);
 }
 
 //scenar 22
@@ -235,21 +235,21 @@ LyngkTestCase.prototype.testMoveHistoire22 = function()
     engine.move("G4","H5");
     //impossible move because H5 is higher than H6
     engine.move("H6","H5")
-    var plateau = engine.plateau();
-    assertTrue(plateau["H6"].getHeight() === 1 && plateau["H5"].getHeight() === 2);
+    var board = engine.board();
+    assertTrue(board["H6"].getHeight() === 1 && board["H5"].getHeight() === 2);
 }
 
 //scenar 23
 LyngkTestCase.prototype.testOnly1ColorInStack = function()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
+    var board = engine.board();
 
-    var heightC1 = plateau["C1"].getHeight();
-    var heughtC2 = plateau["C2"].getHeight();
+    var heightC1 = board["C1"].getHeight();
+    var heughtC2 = board["C2"].getHeight();
 
     engine.move("C1","C2");
-    assertTrue(heightC1 == plateau["C1"].getHeight() && heughtC2 == plateau["C2"].getHeight());
+    assertTrue(heightC1 == board["C1"].getHeight() && heughtC2 == board["C2"].getHeight());
 }
 
 //scenar 24
@@ -286,7 +286,7 @@ LyngkTestCase.prototype.testPlayersClaimColors = function ()
 LyngkTestCase.prototype.testScenar27 = function ()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
+    var board = engine.board();
 
     //Only player one is important here
 
@@ -313,14 +313,14 @@ LyngkTestCase.prototype.testScenar27 = function ()
     engine.move("G5","F3");
 
     //Player one has a score of 1 and only 38 pieces remain on the board
-    assertTrue(engine.getScore(Lyngk.Players.PlayerOne) == 1 && engine.nbOfPieces() == 38);
+    assertTrue(engine.getScore(Lyngk.Players.PlayerOne) == 1 && engine.numberOfPieces() == 38);
 }
 
 //scenar 28
 LyngkTestCase.prototype.testOnlyMoveClaimedColor = function ()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
+    var board = engine.board();
 
     //player 1
     engine.claim(1);
@@ -329,7 +329,7 @@ LyngkTestCase.prototype.testOnlyMoveClaimedColor = function ()
     engine.claim(2);
     engine.move("B3","B4");//impossible move, the color is claimed by player 1
 
-    assertTrue(plateau["B3"].getHeight() == 2 && plateau["B4"].getHeight() == 1);
+    assertTrue(board["B3"].getHeight() == 2 && board["B4"].getHeight() == 1);
 }
 
 //scenar 29
@@ -356,7 +356,7 @@ LyngkTestCase.prototype.testScenar30 = function ()
 LyngkTestCase.prototype.testScenar31 = function ()
 {
     var engine = new Lyngk.Engine();
-    var plateau = engine.plateau();
+    var board = engine.board();
 
     assertTrue(engine.availableMoveFromCoordinate("F7").length == 6);
 }
@@ -445,13 +445,13 @@ LyngkTestCase.prototype.testScenar32 = function ()
     //Player 1
     engine.move("G8","H8");
 
-    var plateau = engine.plateau();
-    for(var coord in plateau)
-        console.log(coord+" "+plateau[coord].getHeight()+" "+plateau[coord].color());
+    var board = engine.board();
+    for(var coord in board)
+        console.log(coord+" "+board[coord].getHeight()+" "+board[coord].color());
 
 
     console.log("Player : "+engine.getCurrentPlayer());
-    console.log("Move restants : "+engine.availableMoves())
+    console.log("Move restants : "+engine.availableMovesForCurrentPlayer());
 
     console.log("score player one : "+engine.getScore(Lyngk.Players.PlayerOne));
     console.log("score player two : "+engine.getScore(Lyngk.Players.PlayerTwo));

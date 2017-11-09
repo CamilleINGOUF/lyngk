@@ -118,18 +118,18 @@ Lyngk.Engine = function () {
     }
 
     this.move = function (pos1, pos2) {
-        var p1 = new Lyngk.Coordinates(pos1[0], parseInt(pos1[1]));
-        var p2 = new Lyngk.Coordinates(pos2[0], parseInt(pos2[1]));
-        if (p1.isValid() && p2.isValid()) {
-            if (!isVacant(p2) && validMove(p1, p2)) {
-                var removedStack = coordinatesIntersections[p1].removeStack();
-                moveStack(removedStack, p2);
-                this.checkGameState(p2);
+        var pos = coordinateFromString(pos1, pos2);
+        if (pos.p1.isValid() && pos.p2.isValid()) {
+            if (!isVacant(pos.p2) && validMove(pos.p1, pos.p2)) {
+                var removedStack = coordinatesIntersections[pos.p1].removeStack();
+                moveStack(removedStack, pos.p2);
+                this.checkGameState(pos.p2);
                 this.refreshGameState();
                 this.changePlayer();
             }
         }
     };
+
     function isColorClaimed(color) {
         var isClaimedByPlayerOne = claimedColorsPlayerOne.indexOf(color) < 0;
         var isClaimedByPlayerTwo = claimedColorsPlayerTwo.indexOf(color) < 0;
@@ -283,8 +283,7 @@ Lyngk.Engine = function () {
         }
     }
 
-    function isColorWhite(color)
-    {
+    function isColorWhite(color) {
         return color === Lyngk.Color.WHITE;
     }
 
@@ -416,12 +415,11 @@ Lyngk.Engine = function () {
 
     this.availableMoveFromCoordinate = function (coordinate) {
         var moves = [];
-        var index, p2, pos2;
-        var p1 = new Lyngk.Coordinates(coordinate[0], parseInt(coordinate[1]));
+        var index, pos2, pos;
         for (index = 0; index < Lyngk.goodCoordinates.length; index += 1) {
             pos2 = Lyngk.goodCoordinates[index];
-            p2 = new Lyngk.Coordinates(pos2[0], parseInt(pos2[1]));
-            if (validMove(p1, p2)) {
+            pos = coordinateFromString(coordinate, pos2);
+            if (validMove(pos.p1, pos.p2)) {
                 moves.push(pos2);
             }
         }
@@ -444,10 +442,8 @@ Lyngk.Engine = function () {
     this.setWinner = function () {
         if (scorePlayerOne > scorePlayerTwo) {
             winner = Lyngk.Players.PlayerOne;
-        } else if (scorePlayerOne < scorePlayerTwo) {
+        } else if (scorePlayerOne <= scorePlayerTwo) {
             winner = Lyngk.Players.PlayerTwo;
-        } else {
-            winner = Lyngk.Players.PlayerOne;
         }
     };
 
